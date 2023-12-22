@@ -1,0 +1,3 @@
+[submodule "zola/themes/no-style-please"]
+	path = zola/themes/no-style-please
+	url = git@gitlab.com:atgumx/no-style-please.git
