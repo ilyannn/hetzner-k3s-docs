@@ -13,24 +13,22 @@ jobs:
     runs-on: arc-runner
 
     steps:
-    - name: Check out repository 1
+    - name: Check out main repository
+      uses: actions/checkout@v3
+
+    - name: Check out aux repository 1
       uses: actions/checkout@v3
       with:
         repository: ilyannn/publish-secret-docs
         path: publish-secret-docs
-        ssh-key: ${{ secrets.SSH_KEY_PUBLISH_SECRET_DOCS }}
-        ssh-strict: false
-        token: ''
+        token: ${{ secrets.TOKEN_READ_MEGAVERSE_CONFIG }}
 
-    - name: Check out repository 2
+    - name: Check out aux repository 2
       uses: actions/checkout@v3
       with:
         repository: ilyannn/hetzner-k3s-main
         path: hetzner-k3s-main
-        ssh-key: ${{ secrets.SSH_KEY_HETZNER_K3S_MAIN }}
-        
-    - name: Check out main repository
-      uses: actions/checkout@v3
+        token: ${{ secrets.TOKEN_READ_MEGAVERSE_CONFIG }}        
       
     - name: Build the Docker image
       run: docker build . -t registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver:$(date +%s)-arm64
