@@ -19,14 +19,14 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: ilyannn/publish-secret-docs
-        path: publish-secret-docs
+        path: build/publish-secret-docs
         token: ${{ secrets.TOKEN_READ_MEGAVERSE_CONFIG }}
     -
       name: Check out aux repository 2
       uses: actions/checkout@v4
       with:
         repository: ilyannn/hetzner-k3s-main
-        path: hetzner-k3s-main
+        path: build/hetzner-k3s-main
         token: ${{ secrets.TOKEN_READ_MEGAVERSE_CONFIG }}        
     -
       name: Login to Cluster Registry
