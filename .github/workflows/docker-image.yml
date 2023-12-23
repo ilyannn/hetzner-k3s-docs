@@ -14,6 +14,8 @@ jobs:
     -    
       name: Check out main repository
       uses: actions/checkout@v4
+      with:
+        submodules: true
     -
       name: Check out aux repository 1
       uses: actions/checkout@v4
