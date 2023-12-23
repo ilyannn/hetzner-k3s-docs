@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: arc-runner
+
+    steps:
+    - name: Check out repository 1
+      uses: actions/checkout@v3
+      with:
+        repository: ilyannn/publish-secret-docs
+        path: publish-secret-docs
+
+    - name: Check out repository 2
+      uses: actions/checkout@v3
+      with:
+        repository: ilyannn/publish-secret-docs
+        path: publish-secret-docs
+        
+    - name: Check out repository
+      uses: actions/checkout@v3
+      
+    - name: Build the Docker image
+      run: docker build . -t registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver:$(date +%s)-arm64
