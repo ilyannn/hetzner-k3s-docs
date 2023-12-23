@@ -11,7 +11,7 @@ RUN ./redact.py /original /redacted
 
 
 # Run Zola
-FROM ghcr.io/getzola/zola:v0.17.1 as zola
+FROM registry.cluster.megaver.se/library/zola as zola
 WORKDIR /project
 COPY zola/ ./
 COPY --from=redact /redacted/ content/main/
