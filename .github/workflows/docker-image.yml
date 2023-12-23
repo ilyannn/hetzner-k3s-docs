@@ -13,11 +13,6 @@ jobs:
     runs-on: arc-runner
 
     steps:
-    - name: Install git on container
-      run: |
-          apt update
-          apt install -y git
-    
     - name: Check out repository 1
       uses: actions/checkout@v3
       with:
@@ -30,6 +25,7 @@ jobs:
       with:
         repository: ilyannn/hetzner-k3s-main
         path: hetzner-k3s-main
+        ssh-key: ${{ secrets.SSH_KEY_HETZNER_K3S_MAIN }}
         
     - name: Check out main repository
       uses: actions/checkout@v3
