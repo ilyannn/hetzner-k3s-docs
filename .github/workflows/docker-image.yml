@@ -13,6 +13,11 @@ jobs:
     runs-on: arc-runner
 
     steps:
+    - name: Install git on container
+      run: |
+          apt update
+          apt install -y git
+    
     - name: Check out repository 1
       uses: actions/checkout@v3
       with:
