@@ -11,6 +11,9 @@ jobs:
     runs-on: arc-runner
 
     steps:
+    -
+      name: Install git 
+      run: sudo apt-get update && sudo apt-get install -y git
     -    
       name: Check out main repository
       uses: actions/checkout@v4
