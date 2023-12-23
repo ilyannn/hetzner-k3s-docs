@@ -19,6 +19,8 @@ jobs:
         repository: ilyannn/publish-secret-docs
         path: publish-secret-docs
         ssh-key: ${{ secrets.SSH_KEY_PUBLISH_SECRET_DOCS }}
+        ssh-strict: false
+        token: ''
 
     - name: Check out repository 2
       uses: actions/checkout@v3
