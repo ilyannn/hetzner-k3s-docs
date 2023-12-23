@@ -22,10 +22,10 @@ jobs:
     - name: Check out repository 2
       uses: actions/checkout@v3
       with:
-        repository: ilyannn/publish-secret-docs
-        path: publish-secret-docs
+        repository: ilyannn/hetzner-k3s-main
+        path: hetzner-k3s-main
         
-    - name: Check out repository
+    - name: Check out main repository
       uses: actions/checkout@v3
       
     - name: Build the Docker image
