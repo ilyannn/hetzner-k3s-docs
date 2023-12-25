@@ -21,7 +21,6 @@ RUN ["zola", "build"]
 # Run web server
 FROM registry.cluster.megaver.se/hub.docker.com/nginx 
 COPY --from=zola /project/public/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
-
-
