@@ -44,14 +44,24 @@ jobs:
       name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3    
     -
-      name: Compute the tag
-      id: tag
-      run: echo "::set-output name=TAG::commit-$(echo ${GITHUB_SHA::8}-$(date +'%Y%m%d%H%M%S'))"
-    - 
+      name: Produce all tags
+      uses: docker/metadata-action@v5
+      with:
+        images: registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver
+        tags: |
+          type=schedule
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=semver,pattern={{major}}
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha
+          type=raw,value=run-${{ github.run_number }}-${{ github.run_attempt }}          
+    -            
       name: Build and push the Docker image
       uses: docker/build-push-action@v5
       with:
           context: .
-          push: true
-          images: registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver
-          tags: latest,${{ steps.tag.outputs.TAG }},run-${{ github.run_number }}-${{ github.run_attempt }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
