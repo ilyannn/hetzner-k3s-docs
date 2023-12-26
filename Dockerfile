@@ -9,16 +9,16 @@ COPY build/publish-secret-docs/ ./
 COPY build/hetzner-k3s-main/ /original/
 RUN python -m unittest tests/*.py
 RUN python redact.py /original /redacted
-RUN python to_markdown.py /redacted /output
+RUN python to_markdown.py /redacted /content/main/
+RUN cp README.md /content/
 
 
 # Run Zola
 FROM registry.cluster.megaver.se/library/zola as zola
 WORKDIR /project
 COPY zola/ ./
-COPY README.md .
-RUN cat README.md >> content/_index.md
-COPY --from=redact /output/ content/main/
+COPY --from=redact /content/ content/
+RUN cat content/README.md >> content/_index.md && rm content/README.md
 RUN ["zola", "build"]
 
 
