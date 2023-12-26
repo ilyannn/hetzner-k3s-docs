@@ -1,0 +1,5 @@
+include mime.types.original;
+
+types {
+    text/plain                                       yaml tf;
+}
