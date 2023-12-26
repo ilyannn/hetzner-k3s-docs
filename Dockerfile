@@ -12,7 +12,7 @@ RUN python -m unittest tests/*.py
 RUN python redact.py /original /redacted
 
 RUN python to_markdown.py /redacted /content/main/
-RUN cat README.md >> content/_index.md
+RUN cat README.md >> /content/_index.md
 
 
 # Run Zola
