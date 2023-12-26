@@ -46,6 +46,7 @@ jobs:
     -
       name: Produce all tags
       uses: docker/metadata-action@v5
+      id: meta
       with:
         images: registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver
         tags: |
