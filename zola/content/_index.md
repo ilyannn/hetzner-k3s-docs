@@ -1,3 +1,8 @@
 +++
-title = "Megaver.Se Documentation"
+
+title = "Documentation"
+
+[slugify]
+paths = "safe"
+
 +++
