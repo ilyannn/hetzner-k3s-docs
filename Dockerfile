@@ -7,8 +7,9 @@ RUN pip install -r requirements.txt
 
 COPY build/publish-secret-docs/ ./
 COPY build/hetzner-k3s-main/ /original/
-RUN ./redact.py /original /redacted
-RUN ./to_markdown.py /redacted /output
+RUN python -m unittest tests/*.py
+RUN python redact.py /original /redacted
+RUN python to_markdown.py /redacted /output
 
 
 # Run Zola
