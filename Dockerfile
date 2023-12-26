@@ -8,13 +8,14 @@ RUN pip install -r requirements.txt
 COPY build/publish-secret-docs/ ./
 COPY build/hetzner-k3s-main/ /original/
 RUN ./redact.py /original /redacted
+RUN ./to_markdown.py /redacted /output
 
 
 # Run Zola
 FROM registry.cluster.megaver.se/library/zola as zola
 WORKDIR /project
 COPY zola/ ./
-COPY --from=redact /redacted/ content/main/
+COPY --from=redact /output/ content/main/
 RUN ["zola", "build"]
 
 

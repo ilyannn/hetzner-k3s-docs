@@ -15,4 +15,5 @@ theme = "no-style-please"
 highlight_code = true
 
 [extra]
-# Put all your custom variables here
+list_pages = true
+no_list_date = true

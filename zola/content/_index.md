@@ -1,3 +1,3 @@
 +++
-redirect_to="main"
+title = "Megaver.Se Documentation"
 +++
