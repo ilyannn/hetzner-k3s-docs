@@ -16,6 +16,8 @@ RUN python to_markdown.py /redacted /output
 FROM registry.cluster.megaver.se/library/zola as zola
 WORKDIR /project
 COPY zola/ ./
+COPY README.md .
+RUN cat README.md >> content/_index.md
 COPY --from=redact /output/ content/main/
 RUN ["zola", "build"]
 
