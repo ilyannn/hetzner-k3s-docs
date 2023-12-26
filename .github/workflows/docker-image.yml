@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
+    
 jobs:
   build:
     runs-on: arc-runner
@@ -43,11 +43,15 @@ jobs:
     -
       name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3    
+    -
+      name: Compute the tag
+      id: tag
+      run: echo "::set-output name=TAG::commit-$(echo ${GITHUB_SHA::8}-$(date +'%Y%m%d%H%M%S'))"
     - 
       name: Build and push the Docker image
-#      run: docker build . -t registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver:$(date +%s)-arm64
       uses: docker/build-push-action@v5
       with:
           context: .
           push: true
-          tags: registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver:latest
+          images: registry.cluster.megaver.se/library/hetzner-k3s-docs-webserver
+          tags: latest,${{ steps.tag.outputs.TAG }},run-${{ github.run_number }}-${{ github.run_attempt }}
