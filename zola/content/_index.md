@@ -1,3 +1,3 @@
 +++
-title = "megaver.se documentation"
+title = "Cluster Documentation"
 +++

@@ -1,4 +1,4 @@
-# Documentation for Megaver.Se project
+# Cluster Documentation
 
 - Documentation is created from the [ilyannn/hetzner-k3s-docs](https://github.com/ilyannn/hetzner-k3s-docs) repo using:
   - private config repo as the main source
