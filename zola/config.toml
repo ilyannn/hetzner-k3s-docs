@@ -11,7 +11,7 @@ theme = "no-style-please"
 
 [markdown]
 highlight_code = true
-highlight_theme = "onehalfdark"
+highlight_theme = "OneHalfDark"
 
 [slugify]
 paths = "safe"
