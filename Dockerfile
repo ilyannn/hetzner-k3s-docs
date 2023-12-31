@@ -5,16 +5,20 @@ FROM registry.cluster.megaver.se/hub.docker.com/python:3.11-bookworm as redact
 COPY build/publish-secret-docs/requirements.txt .
 RUN pip install -r requirements.txt
 
+# Include two repositories we need 
+COPY README.md /original/
+COPY build/hetzner-k3s-main/ /original/main/
 COPY build/publish-secret-docs/ ./
-COPY build/hetzner-k3s-main/ /hetzner-k3s-main/
-COPY README.md /hetzner-k3s-docs/
 
+# Redact out the secrets: /original to /redacted
 RUN python -m unittest tests/*.py
-RUN python redact.py /hetzner-k3s-main /hetzner-k3s-main-redacted
+RUN python redact.py /original /redacted
 
+# Prepare zola input tree: /redacted to /output
 COPY zola/ /output/
-RUN python to_markdown.py /hetzner-k3s-main-redacted /output/content/main/
-RUN cat /hetzner-k3s-docs/README.md >> /output/content/_index.md
+RUN python to_markdown.py /redacted /output/content
+# Zola requires file name to be _index.md to use co-located assets
+RUN find /output/content -type f -name 'README.md' -execdir mv {} _index.md \;
 
 
 # Run Zola
