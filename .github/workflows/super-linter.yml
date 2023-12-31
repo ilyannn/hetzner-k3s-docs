@@ -21,3 +21,4 @@ jobs:
           GITHUB_ACTIONS_CONFIG_FILE: .actionlint.yaml
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_HTML: false
+          YAML_CONFIG_FILE: .yamllint.yaml
