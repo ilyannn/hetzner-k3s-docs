@@ -1,5 +1,5 @@
 # Redact the documents
-FROM registry.cluster.megaver.se/hub.docker.com/python:3.11-bookworm as redact
+FROM --platform=linux/arm64 registry.cluster.megaver.se/hub.docker.com/python:3.11-bookworm as redact
 
 # For better caching
 COPY build/publish-secret-docs/requirements.txt .
@@ -22,7 +22,7 @@ RUN find /output/content -type f -name 'README.md' -execdir mv {} _index.md \;
 
 
 # Run Zola
-FROM registry.cluster.megaver.se/library/zola as zola
+FROM --platform=linux/arm64 registry.cluster.megaver.se/library/zola as zola
 WORKDIR /project
 COPY --from=redact /output/ ./
 RUN ["zola", "build"]
