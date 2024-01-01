@@ -1,11 +1,11 @@
 # Redact the documents
 FROM --platform=linux/arm64 registry.cluster.megaver.se/hub.docker.com/python:3.11-bookworm as redact
 
+WORKDIR /workdir
+
 # For better caching
 COPY build/publish-secret-docs/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-WORKDIR /workdir
 
 # Include two repositories we need 
 COPY README.md /original/
