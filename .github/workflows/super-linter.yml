@@ -18,6 +18,5 @@ jobs:
         uses: github/super-linter@v5
         env:
           DEFAULT_BRANCH: "master"
-          GITHUB_ACTIONS_CONFIG_FILE: .actionlint.yaml
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_HTML: false
