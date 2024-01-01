@@ -6,7 +6,7 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    runs-on: arc-runner
+    runs-on: arc-runner-hetzner-k3s-docs
 
     steps:
       - name: Install git
