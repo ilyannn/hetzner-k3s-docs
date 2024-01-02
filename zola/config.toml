@@ -17,5 +17,5 @@ highlight_theme = "OneHalfDark"
 paths = "safe"
 
 [extra]
-list_pages = true
+list_pages = false
 no_list_date = true

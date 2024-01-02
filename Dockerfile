@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Include two repositories we need 
 COPY README.md /original/
-COPY build/hetzner-k3s-main/ /original/main/
+COPY build/hetzner-k3s-main/ /original/cluster/
 COPY build/publish-secret-docs/ ./
 
 # Redact out the secrets: /original to /redacted
